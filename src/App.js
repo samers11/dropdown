@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Dropdown from './Dropdown';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cars: [
+        {
+          label: 'Acura',
+          value: 'acura',
+        },
+        {
+          label: 'Honda',
+          value: 'honda',
+        },
+        {
+          label: 'Toyota',
+          value: 'toyota',
+        },
+        {
+          label: 'Ferrari',
+          value: 'ferrari',
+        },
+        {
+          label: 'Volkswagen',
+          value: 'volkswagen',
+        },
+        {
+          label: 'Lamborghini',
+          value: 'lamborghini',
+        },
+        {
+          label: 'Ford',
+          value: 'ford',
+        },
+      ],
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  onChange = (item, name) => { console.log(item, name); }
+
+  render() {
+    const { cars } = this.state;
+
+    return (
+      <div className="App">
+        <p>Dropdown menu</p>
+
+        <h3>Click to display List of Car Manufacturers. Type to filter</h3>
+
+        <div>
+          <Dropdown
+            name="cars"
+            searchable={['Search for car', 'No matching cars']}
+            title="Select cars"
+            list={cars}
+            onChange={this.onChange}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
